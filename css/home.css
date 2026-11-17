@@ -171,7 +171,7 @@ html.vt-solo::view-transition-old(ptitle){animation:vtOut .2s linear both;opacit
 .prow .win{background:none;padding:0;overflow:visible}
 .prow .win .scr-img{clip-path:inset(0 0 61% 0)}
 .prow .win::after{content:"";position:absolute;left:0;right:-16px;top:39.3%;height:2px;background:linear-gradient(90deg,var(--sig-m),var(--sig-c));pointer-events:none}
-.pmore{grid-template-rows:1fr!important;transition:none!important}
+.pmore{grid-template-rows:1fr;transition:none}
 .prow.open .parr{transform:translateX(var(--space-3xs));color:var(--accent)}
 
 /* ===== R5 ===== */
@@ -189,9 +189,9 @@ html.vt-solo::view-transition-old(ptitle){animation:vtOut .2s linear both;opacit
 .proj{-webkit-tap-highlight-color:transparent}
 
 /* the screens stay whole (Jon: «no romperia las imagenes»): the cut lives only in the type */
-.prow .win .scr-img{clip-path:none!important}
-.prow .win::after{display:none!important}
-.prow .win.rip .scr-img{animation:none!important}
+.prow .win .scr-img{clip-path:none}
+.prow .win::after{display:none}
+.prow .win.rip .scr-img{animation:none}
 
 /* the rows alternate: screen left and card right, then screen right and card left (Jon: «mejor ir alternando») */
 
@@ -231,36 +231,36 @@ html.vt-open::view-transition-old(root),html.vt-close::view-transition-old(root)
 
 /* ===== R8 ===== */
 /* the base state is clean (Jon: «el estado base no puede ser cortada»); his engine's hits stay */
-.cutx .base{clip-path:none!important;transform:none!important;text-shadow:none!important}.cutx .ct{display:none!important}
+.cutx .base{clip-path:none;transform:none;text-shadow:none}.cutx .ct{display:none}
 /* no points on the home; no captions; no arrow beside the title (it repeats «View project») */
-.rows .prow .did{display:none!important}
-.rows .prow .parr{display:none!important}
+.rows .prow .did{display:none}
+.rows .prow .parr{display:none}
 /* the opening: «WORK» at the size of the role (set by script), in the condensed face; «2024–2026» on its baseline */
 .work-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-s)}
 .work-head .wk{margin:0;font-stretch:62%;font-weight:700;text-transform:uppercase;line-height:.84;letter-spacing:-.01em}
 #work{padding-top:96px}
 /* the marker: the active item of the menu is a solid box; the padding is always there so nothing jumps */
 /* the box: data, sentence, View project; its own surface with the finished cut corner */
-.rows .prow .pmore, .rows .prow .pin{display:block!important;grid-template-rows:none!important;overflow:visible!important}
+.rows .prow .pmore, .rows .prow .pin{display:block;grid-template-rows:none;overflow:visible}
 /* the title opens the project: one line, condensed, big */
 .rows .prow .phead{display:block}
-.rows .prow .ptitle{font-size:min(clamp(3.5rem,1.829rem + 6.857vw,8rem),11.5vh)!important;font-stretch:62%;font-weight:850;text-transform:uppercase;letter-spacing:-.02em;white-space:nowrap;line-height:.9;margin:0}
+.rows .prow .ptitle{font-size:min(clamp(3.5rem,1.829rem + 6.857vw,8rem),11.5vh);font-stretch:62%;font-weight:850;text-transform:uppercase;letter-spacing:-.02em;white-space:nowrap;line-height:.9;margin:0}
 /* the box is hidden while the screen travels and fades back after it lands */
 @media (min-width:64rem){
- .rows .prow{display:grid!important;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:0;align-content:center;
-   min-height:calc(100vh - var(--hdr,82px));padding-block:24px!important;--boxw:calc((100% - 11 * 24px) / 12 * 4 + 3 * 24px)}
- .rows .prow:nth-child(n) .phead{grid-row:1!important;grid-column:1 / -1!important;margin-bottom:24px}
+ .rows .prow{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:0;align-content:center;
+   min-height:calc(100vh - var(--hdr,82px));padding-block:24px;--boxw:calc((100% - 11 * 24px) / 12 * 4 + 3 * 24px)}
+ .rows .prow:nth-child(n) .phead{grid-row:1;grid-column:1 / -1;margin-bottom:24px}
  .rows .prow:nth-child(even) .phead{text-align:right}
  /* mirrored cut corners on the even rows: top-left and bottom-right */
 }
 @media (max-width:63.99rem){
- .rows .prow{display:flex!important;flex-direction:column;padding-block:40px!important}
+ .rows .prow{display:flex;flex-direction:column;padding-block:40px}
  .rows .prow .phead{order:1;margin-bottom:16px}
 }
 @media (max-width:47.99rem){
  #work{padding-top:48px}
- .top{position:sticky!important;top:0;z-index:20}
- .rows .prow .ptitle{white-space:normal!important}
+ .top{position:sticky;top:0;z-index:20}
+ .rows .prow .ptitle{white-space:normal}
 }
 /* the travel: opening, the screen leaves first; closing, the title lands first; the new page waits for both */
 html.vt-open::view-transition-group(ptitle){animation-delay:.16s}
@@ -271,46 +271,46 @@ html.vt-wait::view-transition-new(root){animation-delay:.16s}
 
 /* ===== R9 ===== */
 /* WORK as a section mark: smaller than any project title; the menu keeps saying where you are */
-.work-head .wk{font-size:2rem!important;font-weight:700;letter-spacing:0;line-height:1}
+.work-head .wk{font-size:2rem;font-weight:700;letter-spacing:0;line-height:1}
 #work{padding-top:72px}
 @media (min-width:64rem){
  /* the row: title across; below it, the screen on one side (8 columns) and the box beside it, mounted on the screen's bottom corner */
- .rows .prow:nth-child(n){grid-template-rows:auto auto!important;align-content:center}
- .rows .prow:nth-child(n) .phead{grid-row:1!important;grid-column:1 / -1!important;margin-bottom:28px}
- .rows .prow{padding-block:24px!important}
+ .rows .prow:nth-child(n){grid-template-rows:auto auto;align-content:center}
+ .rows .prow:nth-child(n) .phead{grid-row:1;grid-column:1 / -1;margin-bottom:28px}
+ .rows .prow{padding-block:24px}
 }
 
 /* R9b: the box hangs from the title, mounted on the screen's TOP corner: read title → box → screen; the air goes under the box */
 @media (min-width:64rem){
  .rows .prow:nth-child(n) .phead{margin-bottom:40px}
  /* more air under each row than inside it, so on short laptops a title stays nearer its own screen than the previous one (critic R9) */
- .rows .prow{padding-block:20px 56px!important}
+ .rows .prow{padding-block:20px 56px}
  /* even rows: the title's visual right edge meets the box's right edge (head of design: 21 px short) */
- .rows .prow:nth-child(even) .ptitle{margin-right:-.19em!important}
+ .rows .prow:nth-child(even) .ptitle{margin-right:-.19em}
 }
 /* phone: the screens now fit (screen-shaped), so no bleed and no sliding: same 17 px margin as title and box (critic R9b) */
 
 /* ===== R10 ===== */
 /* the rows as a list again (his site's concept): the R7–R9 compositions are undone here, the base's own rules take over */
-.rows .prow:nth-child(n){display:block!important;min-height:0!important;padding-block:var(--space-s)!important;grid-template-columns:none!important;grid-template-rows:none!important;border-block-end:1px solid var(--line)}
+.rows .prow:nth-child(n){display:block;min-height:0;padding-block:var(--space-s);grid-template-columns:none;grid-template-rows:none;border-block-end:1px solid var(--line)}
 .rows .prow:first-child{border-block-start:1px solid var(--line)}
-.rows .prow:nth-child(n) .phead{display:flex!important;align-items:baseline;gap:var(--space-s);margin:0!important;text-align:left!important}
-.rows .prow:nth-child(n) .ptitle{font-size:var(--step-6)!important;white-space:normal!important;line-height:1!important;margin:0!important;flex:1;min-inline-size:0}
-.rows .prow:nth-child(n) .parr{display:inline!important}
+.rows .prow:nth-child(n) .phead{display:flex;align-items:baseline;gap:var(--space-s);margin:0;text-align:left}
+.rows .prow:nth-child(n) .ptitle{font-size:var(--step-6);white-space:normal;line-height:1;margin:0;flex:1;min-inline-size:0}
+.rows .prow:nth-child(n) .parr{display:inline}
 .rows .prow:nth-child(n) .pmeta{margin-top:var(--space-2xs)}
-.rows .prow:nth-child(n) .pmore{display:grid!important;grid-template-rows:0fr!important;overflow:visible!important;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
-.rows .prow.open:nth-child(n) .pmore,.rows .prow:focus-within:nth-child(n) .pmore{grid-template-rows:1fr!important}
-.rows .prow:nth-child(n) .pin{display:block!important;overflow:hidden!important;min-block-size:0}
-.rows .prow:nth-child(n) .pmore .main{display:block!important}
-.rows .prow:nth-child(n) .did{display:none!important}
+.rows .prow:nth-child(n) .pmore{display:grid;grid-template-rows:0fr;overflow:visible;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.rows .prow.open:nth-child(n) .pmore,.rows .prow:focus-within:nth-child(n) .pmore{grid-template-rows:1fr}
+.rows .prow:nth-child(n) .pin{display:block;overflow:hidden;min-block-size:0}
+.rows .prow:nth-child(n) .pmore .main{display:block}
+.rows .prow:nth-child(n) .did{display:none}
 .rm .rows .prow .pmore{transition:none}
 /* the row (Jon: «ese hover hay que mejorarlo y afinarlo mucho»): the opening animates again (an R5 rule forced transition:none),
    the screen comes back in its own window (plate + padding, as on his site; an R4 rule stripped it) and tears in (his site's rip, which an R4/R5 rule disabled for row images) */
-.rows .prow:nth-child(n) .pmore{transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)!important}
-.rows .prow.snap:nth-child(n) .pmore,.rm .rows .prow:nth-child(n) .pmore{transition:none!important}
-.rows .prow:nth-child(n) .win{block-size:21.0625rem!important;padding:1.75rem!important;background:var(--plate)!important;overflow:hidden!important}
-.rows .prow:nth-child(n) .win.rip .scr-img{animation:rip .34s steps(1,end) 1!important}
-.rm .rows .prow:nth-child(n) .win.rip .scr-img{animation:none!important}
+.rows .prow:nth-child(n) .pmore{transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.rows .prow.snap:nth-child(n) .pmore,.rm .rows .prow:nth-child(n) .pmore{transition:none}
+.rows .prow:nth-child(n) .win{block-size:21.0625rem;padding:1.75rem;background:var(--plate);overflow:hidden}
+.rows .prow:nth-child(n) .win.rip .scr-img{animation:rip .34s steps(1,end) 1}
+.rm .rows .prow:nth-child(n) .win.rip .scr-img{animation:none}
 
 /* ===== R11: aire, tamaños, tempo ===== */
 :root{--d24:24px;--d48:48px;--d96:96px;--d192:192px}
@@ -319,24 +319,21 @@ html.vt-wait::view-transition-new(root){animation-delay:.16s}
    Dividers stay between projects (Jon: «pondría dividers entre works»); the air goes inside each row (48/48) */
 /* Jon 16/11 01:15: «la sección work empieza demasiado alejada» → 96 (era 192); «más espaciado vertical entre elementos de la sección work» → 32 dentro de la fila (era 24);
    «LinkedIn empieza muy lejos» → 96 (era 192); «LinkedIn, email y cv no deben tener esos tamaños» → el tamaño de los títulos de proyecto (eran 189 px) */
-#work{padding-top:var(--d96)!important}
-.work-head{margin-bottom:var(--d48)!important}
-.rows .prow:nth-child(n){padding-block:var(--d48)!important;border-block-end:1px solid var(--line)!important}
-.rows .prow:first-child{border-block-start:1px solid var(--line)!important}
-.rows .prow:nth-child(n) .pmeta{margin-top:32px!important}
-.rows .prow:nth-child(n) .pstory{margin-top:32px!important}
-.rows .prow:nth-child(n) .pin>.sidebar{padding-block:var(--d48) var(--d24)!important}
-.contact{padding-top:var(--d96)!important;margin-top:0!important}
-.contact .big.display{font-size:var(--step-6)!important}
+#work{padding-top:var(--d96)}
+.work-head{margin-bottom:var(--d48)}
+.rows .prow:nth-child(n){padding-block:var(--d48);border-block-end:1px solid var(--line)}
+.rows .prow:first-child{border-block-start:1px solid var(--line)}
+.rows .prow:nth-child(n) .pmeta{margin-top:32px}
+.rows .prow:nth-child(n) .pstory{margin-top:32px}
+.rows .prow:nth-child(n) .pin>.sidebar{padding-block:var(--d48) var(--d24)}
+.contact{padding-top:var(--d96);margin-top:0}
+.contact .big.display{font-size:var(--step-6)}
 
 /* motion.js: his rip on images, the diagram steps without easing, the project rule drawing in steps; clean rest state for the built headings */
-.cutx .base{clip-path:none!important;transform:none!important;text-shadow:none!important}.cutx .ct{display:none!important}
-.rows .prow{position:relative;border-block-end-color:transparent!important}
+.cutx .base{clip-path:none;transform:none;text-shadow:none}.cutx .ct{display:none}
+.rows .prow{position:relative;border-block-end-color:transparent}
 .rows .prow::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--line);transform:scaleX(0);transform-origin:left}
 
 @keyframes ruledraw{to{transform:none}}
 
-/* fondo decidido (Jon 17/11: «fondo 1414 creo que encaja bien»): página #141414, superficies 8 niveles por encima */
-:root{--bg:#141414!important;--plate:#1c1c1c!important}
-html,body{background:#141414!important}
-.rows .prow:nth-child(n) .win{background:#1c1c1c!important}
+.rows .prow:nth-child(n) .win{background:var(--plate)}
