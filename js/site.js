@@ -83,6 +83,14 @@ const setHdr=()=>root.style.setProperty('--hdr',document.querySelector('.top').o
 /* the page title lands letter by letter, then the residual starts */
 document.fonts.ready.then(()=>{const t=document.querySelector('[data-land]');if(OFF||!t)return;if(document.documentElement.dataset.arrived==='blocks'){charge(1);return}E=1;land(t,0,.8);setTimeout(()=>burst(t,1),1100);setTimeout(()=>charge(1),1400)});
 
+/* the language switch keeps your place: the project open over the home (its hash), the page's scroll and the scroll inside the project */
+document.addEventListener('click',e=>{const a=e.target.closest('.lang a[hreflang],.foot a[hreflang]');if(!a)return;const c=document.getElementById('case');
+ try{sessionStorage.setItem('langpos',JSON.stringify({y:scrollY,c:c&&!c.hidden?c.scrollTop:0}))}catch(x){}
+ if(location.hash.length>1&&!a.hash)a.href=a.getAttribute('href')+location.hash});
+(()=>{let pos=null;try{pos=JSON.parse(sessionStorage.getItem('langpos')||'null');sessionStorage.removeItem('langpos')}catch(e){}if(!pos)return;
+ const go=n=>{const c=document.getElementById('case');if(location.hash.length>1&&c){if(!c.hidden){c.scrollTop=pos.c;return}if(n<60){setTimeout(()=>go(n+1),100);return}}scrollTo(0,pos.y)};
+ if(document.readyState==='complete')setTimeout(()=>go(0),50);else addEventListener('load',()=>setTimeout(()=>go(0),50))})();
+
 
 /* Jon Ander portfolio: the transition between pages (cover on leaving, reveal on arriving).
    Same pieces as the original proposal 1: colour liquid from the click, torn strips, scan lines, two flashes at the cut. */
