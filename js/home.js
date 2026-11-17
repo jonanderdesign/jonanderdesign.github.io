@@ -55,7 +55,7 @@ const _burst=burst;burst=function(el,str=1,i=.72){if((el===nm||el===rl||(rl2&&el
   const d=Math.round(v*S*.03);if(v>.6)cx.filter='blur('+(v*1.6).toFixed(1)+'px)';cx.drawImage(R,-d,0);cx.filter='none';cx.drawImage(G,0,0);if(v>.6)cx.filter='blur('+(v*1.2).toFixed(1)+'px)';cx.drawImage(B,d,0);cx.filter='none';cx.globalCompositeOperation='source-over';
   if(v>.35){const t=tmp.getContext('2d');t.clearRect(0,0,S,S);t.drawImage(cv,0,0);const n=2+Math.floor(v*5);for(let k=0;k<n;k++){const y=Math.random()*S,h=S*(.006+Math.random()*.028),dx=(Math.random()-.5)*S*.16*v;cx.drawImage(tmp,0,y,S,h,dx,y,S,h)}}}
  function loop(t){if(S&&t-lt>70){lt=t;const target=(!OFF&&performance.now()<photoUntil)?photoStr:0;if(target>0||lv>0){lv+=(target-lv)*(target>lv?.7:.25);if(lv<.01&&target===0)lv=0;draw(lv)}}requestAnimationFrame(loop)}
- img.onload=()=>{make();requestAnimationFrame(loop)};img.src='../img/jon-square.jpg';
+ img.onload=()=>{make();requestAnimationFrame(loop)};img.src='../img/jon-square.webp';
  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(img.complete)make()},120)})})();
 
 /* ---------- 5 · work rows: the home's (one open at a time, on pointer or keyboard; nothing under the pointer moves).
