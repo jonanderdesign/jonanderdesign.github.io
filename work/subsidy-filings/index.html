@@ -51,16 +51,16 @@
     <h1 class="display ctitle"><span class="gl gx" data-text="Subsidy Filings." data-land>Subsidy Filings<span class="dot" aria-hidden="true">.</span></span></h1>
     <div class="sidebar hero hero-wide" style="--side:20rem;--min:100%;--g:var(--space-m) var(--space-l)">
       <p class="side statement cstory">How companies in Spain claim back part of their training costs: <b>from paperwork prepared by hand to a flow inside Factorial</b>.</p>
-      <figure class="main fig"><div class="plate"><a class="zoom" href="../../img/fundae/hero-2784.png" data-zoom="../../img/fundae/hero-1392.png 1x, ../../img/fundae/hero-2784.png 2x" data-w="1392"><img src="../../img/fundae/hero-1246.png" srcset="../../img/fundae/hero-1246.png 1246w, ../../img/fundae/hero-2492.png 2492w" sizes="(min-width: 90rem) 1246px, calc(100vw - 6rem)" width="1246" height="381" alt="A group’s end filing in Factorial: status Not communicated, the button Mark as communicated, and Download greyed out."></a></div><figcaption>A group’s end filing, run locally with test data. <i>Download</i> waits until the data FUNDAE needs is complete; <i>Mark as communicated</i> only records what HR has done in FUNDAE’s own portal.</figcaption></figure>
+      <figure class="main fig"><div class="plate"><a class="zoom" href="../../img/fundae/hero-2784.png" data-zoom="../../img/fundae/hero-1392.png 1x, ../../img/fundae/hero-2784.png 2x" data-w="1392"><img src="../../img/fundae/hero-1246.png" srcset="../../img/fundae/hero-1246.png 1246w, ../../img/fundae/hero-2492.png 2492w" sizes="(min-width: 90rem) 1246px, calc(100vw - 6rem)" width="1246" height="381" alt="A group’s end filing in Factorial: status Not communicated, the button Mark as communicated, and Download greyed out."></a></div><figcaption>A group’s end filing, run locally with test data. <i>Download</i> only becomes available once the data FUNDAE needs is complete. <i>Mark as communicated</i> only records what HR has already done in FUNDAE’s own portal.</figcaption></figure>
     </div>
     <div class="sidebar overview" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)">
       <p class="side label strong">Overview</p>
       <div class="main stack" style="--s:var(--space-s)">
         <dl class="facts">
       <div><dt>Company</dt><dd>Factorial, HR software</dd></div>
-      <div><dt>Team</dt><dd>Me as <b>the only designer</b>, the engineering manager and the training team’s engineers</dd></div>
+      <div><dt>Team</dt><dd>The engineering manager and the training team’s engineers</dd></div>
       <div><dt>When</dt><dd>June to August 2026, <b>live on 27&nbsp;August</b></dd></div>
-      <div class="wide"><dt>Result</dt><dd><b>158 filings from 22 companies</b> in its first 11 weeks, outside the beta</dd></div>
+      <div class="wide"><dt>Result</dt><dd><b>158 filings from 22 companies</b> in its first 11 weeks, not counting the beta companies</dd></div>
     </dl>
         <p class="nda">Screens use invented data.</p>
       </div>
@@ -69,10 +69,11 @@
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-context">
     <h2 id="h-context" class="side display chap">The problem</h2>
-    <div class="main"><div class="ctext">
-      <p>Companies in Spain can recover part of what they spend on training through FUNDAE, the state training foundation, but only if they make <b>three kinds of filing</b> on time for every course: one for the course, one when each group starts, and one when each group ends.</p>
-        <p class="ctext">The three are spread over months: the last one only comes <b>once a group has finished</b>.</p>
-      <p>Factorial held the course data, but <b>its old export only produced the last of the three</b>. HR teams prepared the rest by hand, outside the product. Every filing is an XML file that FUNDAE checks against its own schemas.</p>
+    <div class="main stack" style="--s:var(--space-s)">
+      <div class="ctext">
+      <p>Companies in Spain can recover part of what they invest in training through FUNDAE, the public foundation that manages these subsidies. To do so, they have to file three things for every course: the course itself, the start of each group and the end of each group. Each filing is an XML file that FUNDAE validates against its own schemas, and the three are spread over months.</p>
+      <p class="ctext"><b>Paperwork outside the product.</b> Factorial already stored all the data these files require. However, the existing export only generated the last of the three, so HR teams prepared the other two by hand, outside the product, with the risk of FUNDAE rejecting them.</p>
+      <p class="ctext"><b>No visibility of the process.</b> Since the start and the end are filed again for every group, a single course can involve many filings over time. Nothing in the product showed which of them had been done and which were still pending.</p>
     </div>
     <ol class="flow viz" aria-label="The three filings of a subsidised course" style="margin-block-start:var(--space-s)">
       <li><b>The course</b><span>Filed once, when the course is set up</span></li>
@@ -84,12 +85,13 @@
   </section>
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-turn">
-    <h2 id="h-turn" class="side display chap">The key idea</h2>
-    <div class="main stack" style="--s:var(--space-s)">
-      <div class="ctext">
-        <p>The product cannot see FUNDAE’s portal. HR downloads the file from Factorial and uploads it there by hand, sometimes on another day. So <b>generating a file cannot mean it has been filed</b>.</p>
-        <p><b>I first treated the two as one step, then split them</b>: HR downloads the file, and uses <i>Mark as communicated</i> once it is actually filed. Otherwise the product would show a filing as done when it is not. The cost is that the status depends on HR marking it (the product cannot check the portal).</p>
-      </div>
+    <h2 id="h-turn" class="side display chap">The decisions</h2>
+    <div class="main stack" style="--s:var(--space-m)">
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 1: Generating a file is not the same as filing it.</h3>
+        <p class="ctext">Factorial has no connection to FUNDAE’s portal. HR downloads the file from the product and uploads it to the portal manually, sometimes days later. If the product marked a filing as done the moment the file was generated, it would be claiming something it cannot verify.</p>
+        <p class="ctext">I kept the two steps separate. The product generates the file and tracks the process, and HR confirms the filing with <i>Mark as communicated</i> once the file has actually been submitted. The cost is that the status is only as reliable as HR’s own record, and the interface says so.</p>
+      </article>
       <ol class="flow viz" style="margin-block:var(--space-s) var(--space-m)" aria-label="From generating the file to filing it">
         <li><b>Generate</b><span>Factorial builds the XML</span></li>
         <li class="arr" aria-hidden="true">→</li>
@@ -99,7 +101,11 @@
         <li class="arr" aria-hidden="true">→</li>
         <li class="key"><b>Mark as communicated</b><span>Only HR can confirm it</span></li>
       </ol>
-    
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 2: Tracking per group, on a dedicated page.</h3>
+        <p class="ctext">The unit that matters is the group, not the course, because the start and the end are filed for each one. The FUNDAE process has its own page within each course, organised by step and with one row per group showing its status.</p>
+        <p class="ctext">The first three layouts placed the process in a tab inside the course page. In all of them it read as one more tab rather than as a sequence of steps, so I gave it a page of its own.</p>
+      </article>
       <figure class="fig" aria-label="The shipped page, and three discarded layouts inside the course page">
           <div class="plate board">
             <div class="frame">
@@ -117,51 +123,53 @@
     </div>
   </section>
 
+  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-costs">
+    <h2 id="h-costs" class="side display chap">Costs by company</h2>
+    <div class="main stack" style="--s:var(--space-m)">
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 3: Cost split by company, without a switch.</h3>
+        <p class="ctext">When a course belongs to a group of companies, each company can recover up to its own limit, calculated from its own participants. As soon as a course is filed that way, the product asks for the split and breaks the costs down by each participant’s company, with no option to skip it. This differs from Factorial’s training budgets, where splitting by company is a choice, and the inconsistency is deliberate: in budgets the split is the company’s preference, whereas for FUNDAE it is a condition of the filing, so a switch would only have let HR generate a file that FUNDAE would reject.</p>
+      </article>
+      <figure class="fig"><div class="plate"><a class="zoom" href="../../img/fundae/costs-1968.png" data-zoom="../../img/fundae/costs-984.png 1x, ../../img/fundae/costs-1968.png 2x" data-w="984"><img loading="lazy" decoding="async" src="../../img/fundae/costs-952.png" srcset="../../img/fundae/costs-952.png 952w, ../../img/fundae/costs-1904.png 1904w" sizes="(min-width: 90rem) 952px, (min-width: 48rem) calc(100vw - 25rem), calc(100vw - 4rem)" width="952" height="315" alt="A group’s costs after the split: the rule that each company recovers up to its own maximum, the total cost, and the direct, indirect and salary costs of one company with its participants."></a></div><figcaption>The same group once its costs are split: each company gets its own costs, and the product states the rule for what each one can recover (run locally with test data).</figcaption></figure>
+    </div>
+  </section>
+
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-result">
     <h2 id="h-result" class="side display chap">Result</h2>
     <div class="main stack" style="--s:var(--space-s)">
-      <p class="result">In its first 11 weeks after launch on 27&nbsp;August&nbsp;2026, outside the beta:</p>
+      <p class="result">In its first 11 weeks after launch, not counting the beta companies:</p>
       <dl class="stats">
         <div><dt>filings marked as communicated</dt><dd>158</dd></div>
         <div><dt>companies filing through it</dt><dd>22</dd></div>
       </dl>
-      <p class="ctext">It replaced the old export, which only produced the group-end filing; <b>the team removed that export in October</b>. After I moved to another team, the training team kept this structure and has since added a salary-cost calculator and fixes on top of it.</p>
+      <p class="ctext">The flow replaced the previous export, which the team retired in October, and the training team has since built a salary-cost calculator on the same structure.</p>
     </div>
-  </section>
-
-  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-costs">
-    <h2 id="h-costs" class="side display chap">Costs by company, without a switch</h2>
-    <div class="main stack" style="--s:var(--space-s)">
-        <p class="ctext">The AI proposed a switch to turn the split by company on (as in Factorial’s training budgets screen). <b>In FUNDAE the split is not optional</b>: in a corporate group, each company can recover up to its own maximum, based on its own participants.</p>
-        <p class="ctext"><b>So there is no switch</b>: when a course is filed as a group of companies, the product asks for the split and lays the costs out by each participant’s company.</p>
-        <figure class="fig"><div class="plate"><a class="zoom" href="../../img/fundae/costs-1968.png" data-zoom="../../img/fundae/costs-984.png 1x, ../../img/fundae/costs-1968.png 2x" data-w="984"><img loading="lazy" decoding="async" src="../../img/fundae/costs-952.png" srcset="../../img/fundae/costs-952.png 952w, ../../img/fundae/costs-1904.png 1904w" sizes="(min-width: 90rem) 952px, (min-width: 48rem) calc(100vw - 25rem), calc(100vw - 4rem)" width="952" height="315" alt="A group’s costs after the split: the rule that each company recovers up to its own maximum, the total cost, and the direct, indirect and salary costs of one company with its participants."></a></div><figcaption>The same group once its costs are split: each company gets its own costs, and the product states the rule for what each one can recover (run locally with test data).</figcaption></figure>
-      </div>
   </section>
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-ai">
     <h2 id="h-ai" class="side display chap">Working with AI</h2>
     <div class="main stack" style="--s:0">
       <article class="dec stack" style="--s:var(--space-s)">
-        <h3>From the brief to the launch, with the agents in between</h3>
+        <h3>From the brief to the launch</h3>
         <ol class="flow viz" style="margin-block:var(--space-s) var(--space-m)" aria-label="The work, step by step">
           <li><b>Brief</b><span>Claude Code, with the spec, the tickets and the PRs through MCP; FUNDAE’s own schemas as the source of truth</span></li>
           <li class="arr" aria-hidden="true">→</li>
           <li><b>Real code</b><span>The flow in production components, in the team’s prototyping environment; three layouts tried</span></li>
           <li class="arr" aria-hidden="true">→</li>
-          <li class="key"><b>Agents</b><span>A QA agent before launch: 175 cases, 13 bugs, two blocking</span></li>
+          <li class="key"><b>Agents</b><span>A QA agent of my own before launch: two blocking bugs found and fixed before launch</span></li>
           <li class="arr" aria-hidden="true">→</li>
           <li class="key"><b>Gates</b><span>Every XML validated against the official schemas; a bug is data lost, a wrong file or a false statement</span></li>
           <li class="arr" aria-hidden="true">→</li>
           <li><b>Team</b><span>Tickets in engineering’s format; live on 27 August; 158 filings from 22 companies</span></li>
         </ol>
-        <p class="ctext">The brief was in Claude Code: the specification and the tickets, read through MCP, the pull requests as they landed, and <b>FUNDAE’s official schemas, downloaded as the source of truth</b> for what each of the three filings must contain. The flow was built in real code on the production design system, in the team’s prototyping environment, where I tried the three layouts as a tab before giving FUNDAE its own page.</p>
-        <p class="ctext">Before launch I ran the QA with <b>an agent I had built in June</b> and had already used on other projects. It gathers the context on its own (specification, tickets, pull requests), writes the test plan, tests in the browser and files the confirmed bugs as tickets. </p>
-        <p class="ctext">On FUNDAE it worked in the live product with a test company, <b>validated every file it generated against FUNDAE’s official schemas</b>, traced bugs to the code where the code was available, and filed them in the format engineering asked for.</p>
-        <p class="ctext">The agent first read <i>Mark as communicated</i> as a claim made by the product and flagged as critical things that were not. <b>I corrected it: that status is HR’s own record.</b> From then on, a bug was the product losing data, writing wrong data into a file or saying something false; everything else went to a separate list of design issues.</p>
-        <p class="ctext">It found <b>13 bugs, two of them blocking</b>: a group-start file FUNDAE would have rejected, and a group-end file that could not be generated at all. Both were in the group-of-companies filing profile, which earlier testing had not covered, and both were fixed before launch.</p>
+        <p class="ctext">The design work was managed from Claude Code, with the specification, the tickets and the merged pull requests connected to it through MCP. I took <b>FUNDAE’s official schemas, rather than the previous export or a demo, as the source of truth</b> for what each filing must contain. The flow was built in real code on the production design system, in the team’s prototyping environment.</p>
+        <p class="ctext">QA before launch was done by <b>an agent of my own</b>, built in June and already used on other projects. Given the feature and the team’s ticket format, it writes the test plan, tests in the browser and files the confirmed bugs as tickets.</p>
+        <p class="ctext">On this project it worked on the live product with a test company and <b>validated every generated file against the official schemas</b>.</p>
+        <p class="ctext">The first QA criterion was too loose. It let the agent read <i>Mark as communicated</i> as a claim made by the product and rank as critical several things that were not. <b>I tightened it to the three things the product can actually get wrong</b>: losing data, writing incorrect data into a file or stating something false. Everything else went to a separate list of design issues.</p>
+        <p class="ctext"><b>Two of the confirmed bugs were blocking</b>: a group-start file that FUNDAE would have rejected and a group-end file that could not be generated. Both arose with groups of companies, a case that previous testing had not covered, and both were fixed before launch.</p>
 <figure class="fig" aria-label="QA with an agent: the test plan, the schema check and the ticket">
           <div class="plate docs">
             <div class="doc paper plan">
-              <p class="pk">Test plan · 175 cases</p>
+              <p class="pk">Test plan</p>
               <ol class="plan-sec">
                 <li>Coverage model</li>
                 <li>Oracles: what decides each check</li>

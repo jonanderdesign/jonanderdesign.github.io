@@ -50,7 +50,7 @@
     <a class="label back" href="../../#work" data-nav><i aria-hidden="true">←</i> All work</a>
     <h1 class="display ctitle"><span class="gl gx" data-text="Workforce Culture." data-land>Workforce Culture<span class="dot" aria-hidden="true">.</span></span></h1>
     <div class="sidebar hero hero-wide" style="--side:20rem;--min:100%;--g:var(--space-m) var(--space-l)">
-      <p class="side statement cstory">Factorial bought a culture assessment that uses AI. I designed the product inside Factorial <b>through a prototype coded with AI</b>.</p>
+      <p class="side statement cstory">Factorial bought a culture assessment that uses AI to explain its results. This is how it became a product inside Factorial, <b>with anonymity that holds no matter how the results are filtered</b>.</p>
       <figure class="main fig"><div class="plate"><a class="zoom" href="../../img/wc/hero-2688.png" data-zoom="../../img/wc/hero-1344.png 1x, ../../img/wc/hero-2688.png 2x" data-w="1344"><img src="../../img/wc/hero-1246.png" srcset="../../img/wc/hero-1246.png 1246w, ../../img/wc/hero-2492.png 2492w" sizes="(min-width: 90rem) 1246px, calc(100vw - 6rem)" width="1246" height="432" alt="The culture survey results in the prototype: the culture type Stone House with its three traits, One’s recommended actions, and the survey settings with anonymous answers."></a></div><figcaption>From the prototype, with invented data.</figcaption></figure>
     </div>
     <div class="sidebar overview" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)">
@@ -58,9 +58,9 @@
       <div class="main stack" style="--s:var(--space-s)">
         <dl class="facts">
       <div><dt>Company</dt><dd>Factorial, HR software</dd></div>
-      <div><dt>Team</dt><dd>Me as <b>product designer</b>; a product manager; two engineers; the product design director</dd></div>
+      <div><dt>Team</dt><dd>A product manager, two engineers and the product design director</dd></div>
       <div><dt>When</dt><dd>September to November 2026</dd></div>
-      <div class="wide"><dt>Result</dt><dd>The prototype became <b>the team’s reference</b>, and an engineer built the survey from it</dd></div>
+      <div class="wide"><dt>Result</dt><dd>A culture assessment inside Factorial with results that <b>stay anonymous no matter how you filter them</b>, launching in November 2026</dd></div>
     </dl>
         <p class="nda">Screens are from the prototype and use invented data.</p>
       </div>
@@ -69,25 +69,28 @@
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-context">
     <h2 id="h-context" class="side display chap">The problem</h2>
-    <div class="main"><div class="ctext">
-      <p>The acquired company’s product measures an organisation’s culture with a survey and uses AI to explain the results, and <b>it had to become part of Factorial’s product</b>.</p>
-      <p>Two conditions shaped the design. The answers are about people, so <b>nobody could be identified, no matter how the results were filtered</b>. And the team set that results had to be explainable (under the EU AI Act): the product calculates the score and the AI only writes the explanation.</p>
-    </div></div>
+    <div class="main stack" style="--s:var(--space-s)">
+      <div class="ctext">
+      <p>The acquired product measures an organisation’s culture through a survey and uses AI to explain the results. It had to be integrated into Factorial so that companies could run it with the people they already manage there. Two conditions defined the design from the start.</p>
+      <p class="ctext"><b>Anonymity under any filter.</b> The answers are about people, so no one may be identifiable, no matter how the results are filtered.</p>
+      <p class="ctext"><b>Explainable results.</b> Under the EU AI Act the results have to be explainable, and that part was settled before the design began: the product calculates the score and the AI only writes the explanation. Anonymity was the condition that remained open.</p>
+    </div>
+    </div>
   </section>
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-how">
-    <h2 id="h-how" class="side display chap">The key idea</h2>
-    <div class="main stack" style="--s:var(--space-s)">
-      <div class="ctext">
-        <p>Hiding small groups is not enough when filters combine: <b>subtracting one result from another can reveal them</b>, a <i>differencing attack</i>. Groups with fewer than three answers were already hidden, but with two filters combined the total said seven answers and only six showed on screen. Subtracting one from the other revealed that the only manager in that group had answered.</p>
-        <p>A static mock-up would not have shown it; a working prototype did. The AI writing the code advised leaving it. <b>I decided to fix it before anything shipped</b>: the AI proposed a method (from a known survey tool), and it was fixed in the three places the leak appeared.</p>
-        <p class="ctext">The fewer-than-three rule now also covers subtraction: with any filter, <b>a small group can be neither read nor worked out</b>. The cost is that small groups show less data.</p>
-      </div>
+    <h2 id="h-how" class="side display chap">The decisions</h2>
+    <div class="main stack" style="--s:var(--space-m)">
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 1: Anonymity as a subtraction rule.</h3>
+        <p class="ctext">Groups with fewer than three answers were already hidden. However, when two filters were combined, the total showed seven answers and the screen only six: by subtracting one from the other, anyone could tell that the only manager in that group had answered. This is known as a <i>differencing attack</i>, and it only shows up when the totals are actually computed, which is why the working prototype caught it and a static mock-up would not have.</p>
+        <p class="ctext">I extended the rule to cover subtraction, so that with any filter active a group with fewer than three answers can neither be read nor deduced, and the same rule applies in the three places where the leak appeared. The trade-off is that small groups show less data.</p>
+      </article>
       <div class="piece before">
         <p class="pk">Before: a team and an office filtered together</p>
         <table class="mini">
           <tr><th>Answers in the total</th><td>7</td></tr>
-          <tr><th>Answers on screen (manager group hidden: under three)</th><td>6</td></tr>
+          <tr><th>Answers on screen (managers’ group hidden: fewer than three)</th><td>6</td></tr>
           <tr class="leak"><th>Worked out by subtracting</th><td>the only manager</td></tr>
         </table>
       </div>
@@ -97,18 +100,20 @@
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-turn">
     <h2 id="h-turn" class="side display chap">What changed</h2>
-    <div class="main stack" style="--s:var(--space-s)"><div class="ctext">
-      <p>At first I made it <b>a permission closed by default</b>: only the person who creates the survey sees the culture results. That fails companies that want their staff to see them: a company asks its people about its culture, <i>and they never see the answer</i>. </p>
-        <p class="ctext">No fixed setting fits every company, so <b>who sees the results became a permission each company sets</b>. Engineering made admins the default.</p>
-    </div>
+    <div class="main stack" style="--s:var(--space-m)">
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 2: Who sees the results is up to each company.</h3>
+        <p class="ctext">The first version restricted the results to the person who created the survey. That does not hold for companies that want their employees to see them: a company asks its people about its culture and then never shows them the answer.</p>
+        <p class="ctext">Since no fixed setting fits every company, I made access a permission that each company configures, with administrators as the default.</p>
+      </article>
     </div>
   </section>
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-result">
     <h2 id="h-result" class="side display chap">Result</h2>
     <div class="main stack" style="--s:var(--space-s)">
-      <p class="result">Launch planned for November 2026.</p>
-      <p class="ctext">Before launch, the prototype was the team’s reference for the integration, <b>an engineer built the survey from it</b>, and Sales was showing it to customers.</p>
+      <p class="result">Launching in November 2026.</p>
+      <p class="ctext">The assessment runs inside Factorial on the people a company already manages there, with results that stay anonymous no matter how they are filtered and explanations that rest on a score the product itself calculates. Sales was showing it to customers before launch.</p>
     </div>
   </section>
 
@@ -118,21 +123,20 @@
     <div class="main"><ol class="flow viz" style="margin-block:var(--space-s) var(--space-m)" aria-label="The work, step by step">
           <li><b>Brief</b><span>Claude Code, with the product documentation and the tickets through MCP; two conditions, anonymity and explainability</span></li>
           <li class="arr" aria-hidden="true">→</li>
-          <li class="key"><b>Real code</b><span>Production components; in Claude Design, 177 artboards, 159 built from them</span></li>
+          <li class="key"><b>Real code</b><span>A prototype built from production components, in Claude Design and in code</span></li>
           <li class="arr" aria-hidden="true">→</li>
-          <li class="key"><b>Agents</b><span>The AI writing the code, corrected; an audit by several agents: 102 findings, 100 confirmed</span></li>
+          <li class="key"><b>Agents</b><span>The prototype found the leak; I had it fixed against the first answer I got</span></li>
           <li class="arr" aria-hidden="true">→</li>
-          <li><b>Gates</b><span>One rule: with a filter on, a group under 3 answers can’t be read or subtracted out; applied in the three places the flaw appeared</span></li>
+          <li><b>Gates</b><span>One rule: with a filter on, a group with fewer than three answers cannot be read or subtracted out; applied in the three places the flaw appeared</span></li>
           <li class="arr" aria-hidden="true">→</li>
           <li><b>Team</b><span>The team’s reference; an engineer built the survey from it; Sales showed it to customers</span></li>
         </ol>
       <div class="ctext">
-        <p>The brief was in Claude Code: the product documentation and the tickets, read through MCP, and the two conditions the team had set, anonymity and explainability. <b>I compiled the production design system from source into Claude Design</b> and shared the set-up with the design team; the culture assessment took 177 artboards (159 of them built from production components), and the results page went through three rounds and seven versions before choosing.</p>
-        <p>The prototype was real code, so it found the leak; a mock-up would have shown nothing. <b>The AI writing the code advised leaving it</b> and adding it to a question for Legal. I had it fixed in the three places it appeared, before anything shipped.</p>
-        <p>In October, several agents audited the prototype: <b>102 findings, 100 of them confirmed by a second reviewer</b>. The prototype became the team’s reference, an engineer built the survey from it, and Sales was showing it to customers before launch.</p>
+        <p>The design work was managed from Claude Code, connected to the product documentation and the tickets through MCP, with the two conditions as the brief. <b>I compiled the production design system from source into Claude Design</b> and shared the setup with the design team, so the prototype was built from the same components as the product itself. Because of that, <b>the engineer built the survey from it rather than from a specification</b>.</p>
+        <p>The easy route with the leak was to log it as a question for Legal and move on. <b>I did not take it.</b> The promise to the employee is that no one can be identified, and a leak that two filters can demonstrate breaks that promise whatever Legal says, so it was fixed before anything shipped.</p>
       </div>
-      <figure class="fig" aria-label="Working with AI: the canvas, the prototype and the audit">
-        <div class="plate docs three">
+      <figure class="fig" aria-label="Working with AI: the canvas and the prototype">
+        <div class="plate docs">
           <div class="doc paper canvas">
             <p class="pk">Claude Design · the canvas</p>
             <p class="tt">Versions side by side before choosing</p>
@@ -140,7 +144,7 @@
               <li><b>Results page</b> three rounds, seven versions</li>
               <li><b>One’s recommended actions</b> three versions, one chosen</li>
               <li><b>Results with filters</b> one filter, the other, both combined</li>
-              <li><b>In all</b> 177 artboards, 159 of them built from production components</li>
+              <li><b>In all</b> built from production components</li>
             </ul>
           </div>
           <div class="doc termwin chat">
@@ -149,13 +153,8 @@
             <p class="msg me"><span>Me</span>But if there’s a clash and a bug, why isn’t it fixed?</p>
             <p class="msg ai"><span>AI</span>You’re right. Fixed with one rule: with a filter on, the number of a group with fewer than 3 answers can’t be read or worked out by subtracting anywhere. The same flaw showed up in three places.</p>
           </div>
-          <div class="doc paper audit">
-            <p class="pk">Agents · the audit</p>
-            <p class="tt">102 findings · 100 confirmed</p>
-            <p>Several agents went through the prototype; a second reviewer checked each finding.</p>
-          </div>
         </div>
-        <figcaption>Recreated from the canvas’s index, the conversation with the AI writing the prototype (29 October, translated from Spanish and shortened) and the audit summary.</figcaption>
+        <figcaption>Recreated from the canvas’s index and the conversation with the AI writing the prototype (29 October, translated from Spanish and shortened).</figcaption>
       </figure>
     </div>
   </section>

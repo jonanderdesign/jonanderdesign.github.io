@@ -58,29 +58,41 @@
       <div class="main stack" style="--s:var(--space-s)">
         <dl class="facts">
       <div><dt>Company</dt><dd>Riskallay, an early-stage third-party risk platform</dd></div>
+      <div><dt>Team</dt><dd>One engineer</dd></div>
       <div><dt>When</dt><dd>2024</dd></div>
-      <div class="wide"><dt>Result</dt><dd>A design validated to <b>remove the clients’ dependency on spreadsheets</b></dd></div>
+      <div class="wide"><dt>Result</dt><dd>A risk model that <b>runs each client’s policy in the product</b>, so analysts only review what needs a person</dd></div>
     </dl>
-        <p class="nda">Under NDA: some details are slightly altered, and no numbers are shared.</p>
+        <p class="nda">Screens redrawn with invented data.</p>
       </div>
     </div>
   </header>
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-context">
     <h2 id="h-context" class="side display chap">The problem</h2>
-    <div class="main"><div class="ctext">
-      <p>Clients used the platform to assess their suppliers and partners with questionnaires. Large clients each had their own risk policy, with many more variables than the platform could handle, so they calculated risk <b>in spreadsheets, outside the product</b>.</p>
-      <p>Those weighted, multi-factor sheets were easy to get wrong and hard to audit (a risk for regulatory compliance). And every decision waited for an analyst to review the result by hand.</p>
-    </div></div>
+    <div class="main stack" style="--s:var(--space-s)">
+      <div class="ctext">
+      <p>Clients used the platform to assess their suppliers and partners through questionnaires. However, each large client had its own risk policy, with far more variables than the platform could handle, so the actual risk calculation happened in spreadsheets, outside the product.</p>
+      <p class="ctext"><b>Policies the product could not represent.</b> Each policy lived in a weighted, multi-factor spreadsheet of its own, which was easy to get wrong, hard to audit and a compliance risk in itself.</p>
+      <p class="ctext"><b>Every decision depended on an analyst.</b> After the calculation, an analyst still had to review each result manually before any decision could move forward.</p>
+    </div>
+    </div>
   </section>
 
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-decisions">
-    <h2 id="h-decisions" class="side display chap">The key idea</h2>
-    <div class="main stack" style="--s:var(--space-s)">
-      <div class="ctext">
-        <p>By analysing how clients used the platform, I reduced every enterprise case to <b>two ways of calculating risk</b>. A <i>weighted</i> matrix scores each field by its impact and adds the scores. A <i>combined</i> matrix lists every combination of the chosen fields (such as country and revenue), and the client gives each combination its own risk. A routing layer picks the matrix for each kind of third party: suppliers go through one, partners through another.</p>
-        <p>Rules on the risk score, or on exact field values, then settle the clear-cut cases, so <b>analysts only review the ones that need a person</b>.</p>
-      </div>
+    <h2 id="h-decisions" class="side display chap">The decisions</h2>
+    <div class="main stack" style="--s:var(--space-m)">
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 1: Two matrix models.</h3>
+        <p class="ctext">Looking at how clients actually applied their policies, I reduced them to two ways of calculating risk. In a <i>weighted</i> matrix, the client selects the fields and assigns each one a weight; the risk is the weighted sum. In a <i>combined</i> matrix, the product generates every combination of the selected fields and the client assigns a specific risk to each one (for example, a particular country combined with a particular revenue gives risk X).</p>
+      </article>
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 2: A routing layer.</h3>
+        <p class="ctext">Which matrix applies depends on the type of third party: suppliers go through one and partners through another. This allows a single account to manage several policies without leaving the product.</p>
+      </article>
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>Decision 3: Rules for the clear cases.</h3>
+        <p class="ctext">Rules based on the score (“if the risk is above 4, deny”) or on exact values (“if the country is Spain, approve”) resolve the clear cases automatically. <b>Analysts only review the ones that need a person.</b></p>
+      </article>
       <ol class="flow viz" aria-label="How a third party gets its risk" style="margin-block:var(--space-s) var(--space-m)">
           <li><b>Third party</b><span>A supplier or a partner, assessed with a questionnaire</span></li>
           <li class="arr" aria-hidden="true">→</li>
@@ -96,8 +108,8 @@
   <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-result">
     <h2 id="h-result" class="side display chap">Result</h2>
     <div class="main stack" style="--s:var(--space-s)">
-      <p class="result">The design was validated as the way to remove the clients’ dependency on spreadsheets.</p>
-      <p class="ctext">Policies would live <b>in the product, where they can be audited</b>, instead of in each client’s spreadsheets.</p>
+      <p class="result">Each client’s policy runs in the product.</p>
+      <p class="ctext">It becomes product configuration (two matrices, a routing layer and a set of rules) instead of a spreadsheet of its own, and it can be audited where it runs. For current accounts that ends the dependence on spreadsheets; for large ones it turns what had been a product limitation into a selling point.</p>
     </div>
   </section>
   <section class="csec center stack" style="--s:var(--space-s)" aria-label="Next project">
