@@ -247,3 +247,11 @@ window.Nav={go,_test:{frag,rects,cut,blockReveal}};
 (function(){var ps=document.querySelectorAll('.about-intro p'),im=document.querySelectorAll('.about-photos img');if(ps.length<2||im.length<2)return;
 function align(){im[1].style.marginBlockStart='';if(im[0].getBoundingClientRect().left<ps[0].getBoundingClientRect().right)return;im[1].style.marginBlockStart=Math.max(0,ps[1].getBoundingClientRect().top-ps[0].getBoundingClientRect().top)+'px'}
 align();addEventListener('resize',align);if(document.fonts)document.fonts.ready.then(align)})();
+
+/* el menú de los teléfonos: abre y cierra, se cierra al elegir, con Escape y al pasar a pantalla ancha */
+(()=>{const top=document.querySelector('.top'),btn=document.getElementById('menuBtn'),box=document.getElementById('sitemenu');if(!btn||!top)return;
+ const set=o=>{top.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false')};
+ btn.addEventListener('click',()=>set(!top.classList.contains('open')));
+ box&&box.addEventListener('click',e=>{if(e.target.closest('a'))set(false)});
+ addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+ matchMedia('(min-width: 48rem)').addEventListener('change',e=>{if(e.matches)set(false)});})();
