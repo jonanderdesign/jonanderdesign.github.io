@@ -35,12 +35,16 @@ document.querySelectorAll('.contact a.big').forEach(a=>a.addEventListener('point
 const namesBox=document.getElementById('names'),nm=document.getElementById('nm'),rl=document.getElementById('rl'),rl2=document.getElementById('rl2');
 
 function fitRole(){const wide=innerWidth>=768;namesBox.style.width='';const W=namesBox.clientWidth;
- const wAt=(el,fs)=>{el.style.fontSize=fs+'px';el.style.fontStretch='62%';return el.getBoundingClientRect().width};
+ /* el hero se encoge con el scroll: getBoundingClientRect devuelve la caja ya escalada, asi que toda medida se
+    normaliza por la escala vigente; sin esto, un resize a media pagina (la barra del navegador del movil al
+    plegarse) mide el 86% y agranda el titulo hasta sacarlo de la pantalla */
+ const sc=(namesBox.getBoundingClientRect().width/W)||1;
+ const wAt=(el,fs)=>{el.style.fontSize=fs+'px';el.style.fontStretch='62%';return el.getBoundingClientRect().width/sc};
  let fs=100*W/Math.max(wAt(rl,100),wAt(rl2,100));
  if(wide){const hdr=document.querySelector('.top').offsetHeight,ic=getComputedStyle(document.querySelector('.intro')),sg=document.querySelector('.names .sign');
-  const sgH=sg.getBoundingClientRect().height+parseFloat(getComputedStyle(sg).marginTop||0);const avail=innerHeight-hdr-parseFloat(ic.paddingTop)-parseFloat(ic.paddingBottom)-sgH-24;const fsH=avail/(2*.84);if(fsH<fs)fs=fsH}
+  const sgH=sg.getBoundingClientRect().height/sc+parseFloat(getComputedStyle(sg).marginTop||0);const avail=innerHeight-hdr-parseFloat(ic.paddingTop)-parseFloat(ic.paddingBottom)-sgH-24;const fsH=avail/(2*.84);if(fsH<fs)fs=fsH}
  [rl,rl2].forEach(el=>wAt(el,fs))}
-let rzn;addEventListener('resize',()=>{clearTimeout(rzn);rzn=setTimeout(fitRole,80)});
+let rzn,rzw=innerWidth;addEventListener('resize',()=>{if(innerWidth===rzw&&innerWidth<768)return;rzw=innerWidth;clearTimeout(rzn);rzn=setTimeout(fitRole,80)});
 /* ---------- intro: the photo glitches inside with the role and the name (the home's) ---------- */
 let photoUntil=0,photoStr=0;
 const _burst=burst;burst=function(el,str=1,i=.72){if((el===nm||el===rl||(rl2&&el===rl2))&&!OFF){photoUntil=performance.now()+220;photoStr=Math.max(.45,str)}return _burst(el,str,i)};
