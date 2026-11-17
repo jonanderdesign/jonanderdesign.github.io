@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subsidy Filings (FUNDAE) · Product design case study · Jon Ander Saenz</title>
+<meta name="description" content="Case study: designing FUNDAE subsidy filings inside Factorial, the HR software. From paperwork prepared by hand to a flow in the product: 158 filings from 22 companies in the first 11 weeks. QA with an AI agent before launch.">
+<meta name="author" content="Jon Ander Saenz">
+<link rel="canonical" href="https://jonander.github.io/work/subsidy-filings/">
+<link rel="alternate" hreflang="en" href="https://jonander.github.io/work/subsidy-filings/">
+<link rel="alternate" hreflang="es" href="https://jonander.github.io/es/work/subsidy-filings/">
+<link rel="alternate" hreflang="x-default" href="https://jonander.github.io/work/subsidy-filings/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Jon Ander Saenz">
+<meta property="og:title" content="Subsidy Filings (FUNDAE) · Product design case study · Jon Ander Saenz">
+<meta property="og:description" content="Case study: designing FUNDAE subsidy filings inside Factorial, the HR software. From paperwork prepared by hand to a flow in the product: 158 filings from 22 companies in the first 11 weeks. QA with an AI agent before launch.">
+<meta property="og:url" content="https://jonander.github.io/work/subsidy-filings/">
+<meta property="og:image" content="https://jonander.github.io/img/fundae/hero-1246.png">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#141414">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141414'/%3E%3Ctext x='13' y='24' font-family='Arial,sans-serif' font-weight='700' font-size='21' text-anchor='middle' fill='%23eee'%3EJ%3C/text%3E%3Crect x='21' y='19' width='5' height='5' fill='%23ff2bd6'/%3E%3C/svg%3E">
+<script>try{if(sessionStorage.getItem('arriveB')==='1')document.documentElement.dataset.arrived='blocks'}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Martian+Mono:wdth,wght@75..112.5,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/site.css?v=20261117">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Subsidy Filings (FUNDAE)", "description": "Case study: designing FUNDAE subsidy filings inside Factorial, the HR software. From paperwork prepared by hand to a flow in the product: 158 filings from 22 companies in the first 11 weeks. QA with an AI agent before launch.", "inLanguage": "en", "url": "https://jonander.github.io/work/subsidy-filings/", "mainEntityOfPage": "https://jonander.github.io/work/subsidy-filings/", "image": "https://jonander.github.io/img/fundae/hero-1246.png", "author": {"@type": "Person", "name": "Jon Ander Saenz", "jobTitle": "Product designer", "url": "https://jonander.github.io/", "sameAs": ["https://www.linkedin.com/in/jon-ander-saenz/"], "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "worksFor": {"@type": "Organization", "name": "Factorial"}, "knowsAbout": ["Product design", "B2B software", "HR software", "AI products", "Agentic workflows", "Prototyping in code", "Design systems"]}, "publisher": {"@type": "Person", "name": "Jon Ander Saenz", "jobTitle": "Product designer", "url": "https://jonander.github.io/", "sameAs": ["https://www.linkedin.com/in/jon-ander-saenz/"], "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "worksFor": {"@type": "Organization", "name": "Factorial"}, "knowsAbout": ["Product design", "B2B software", "HR software", "AI products", "Agentic workflows", "Prototyping in code", "Design systems"]}}</script>
+</head>
+<body>
+<div class="page inv case-page">
+
+<header class="top">
+  <div class="center bar">
+    <a class="brand strong" href="../../#top">Jon Ander<span class="dot" aria-hidden="true">.</span></a>
+    <div class="tools">
+      <nav class="cluster" style="--c:var(--space-s)" aria-label="Main"><a class="nav-work" href="../../#work" data-nav aria-current="true">Work</a><a href="../../about.html" data-nav>About</a><a href="#contact">Contact</a></nav>
+      <div class="lang" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><span class="sep" aria-hidden="true">/</span><a href="../../es/work/subsidy-filings/" lang="es" hreflang="es" title="Versión en español">ES</a></div>
+      <div class="cluster" style="--c:var(--space-3xs)">
+      <button class="ib" id="themeBtn" type="button"></button>
+      <button class="ib" id="fxBtn" type="button"></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <header class="chead center stack" style="--s:var(--space-m)">
+    <a class="label back" href="../../#work" data-nav><i aria-hidden="true">←</i> All work</a>
+    <h1 class="display ctitle"><span class="gl gx" data-text="Subsidy Filings." data-land>Subsidy Filings<span class="dot" aria-hidden="true">.</span></span></h1>
+    <div class="sidebar hero hero-wide" style="--side:20rem;--min:100%;--g:var(--space-m) var(--space-l)">
+      <p class="side statement cstory">How companies in Spain claim back part of their training costs: <b>from paperwork prepared by hand to a flow inside Factorial</b>.</p>
+      <figure class="main fig"><div class="plate"><a class="zoom" href="../../img/fundae/hero-2784.png" data-zoom="../../img/fundae/hero-1392.png 1x, ../../img/fundae/hero-2784.png 2x" data-w="1392"><img src="../../img/fundae/hero-1246.png" srcset="../../img/fundae/hero-1246.png 1246w, ../../img/fundae/hero-2492.png 2492w" sizes="(min-width: 90rem) 1246px, calc(100vw - 6rem)" width="1246" height="381" alt="A group’s end filing in Factorial: status Not communicated, the button Mark as communicated, and Download greyed out."></a></div><figcaption>A group’s end filing, run locally with test data. <i>Download</i> waits until the data FUNDAE needs is complete; <i>Mark as communicated</i> only records what HR has done in FUNDAE’s own portal.</figcaption></figure>
+    </div>
+    <div class="sidebar overview" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)">
+      <p class="side label strong">Overview</p>
+      <div class="main stack" style="--s:var(--space-s)">
+        <dl class="facts">
+      <div><dt>Company</dt><dd>Factorial, HR software</dd></div>
+      <div><dt>Team</dt><dd>Me as <b>the only designer</b>, the engineering manager and the training team’s engineers</dd></div>
+      <div><dt>When</dt><dd>June to August 2026, <b>live on 27&nbsp;August</b></dd></div>
+      <div class="wide"><dt>Result</dt><dd><b>158 filings from 22 companies</b> in its first 11 weeks, outside the beta</dd></div>
+    </dl>
+        <p class="nda">Screens use invented data.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-context">
+    <h2 id="h-context" class="side display chap">The problem</h2>
+    <div class="main"><div class="ctext">
+      <p>Companies in Spain can recover part of what they spend on training through FUNDAE, the state training foundation, but only if they make <b>three kinds of filing</b> on time for every course: one for the course, one when each group starts, and one when each group ends.</p>
+        <p class="ctext">The three are spread over months: the last one only comes <b>once a group has finished</b>.</p>
+      <p>Factorial held the course data, but <b>its old export only produced the last of the three</b>. HR teams prepared the rest by hand, outside the product. Every filing is an XML file that FUNDAE checks against its own schemas.</p>
+    </div>
+    <ol class="flow viz" aria-label="The three filings of a subsidised course" style="margin-block-start:var(--space-s)">
+      <li><b>The course</b><span>Filed once, when the course is set up</span></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><b>Each group starts</b><span>Filed again for every group</span></li>
+      <li class="arr" aria-hidden="true">→</li>
+      <li><b>Each group ends</b><span>When the group finishes, with costs and participants. The only one the old export produced</span></li>
+    </ol></div>
+  </section>
+
+  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-turn">
+    <h2 id="h-turn" class="side display chap">The key idea</h2>
+    <div class="main stack" style="--s:var(--space-s)">
+      <div class="ctext">
+        <p>The product cannot see FUNDAE’s portal. HR downloads the file from Factorial and uploads it there by hand, sometimes on another day. So <b>generating a file cannot mean it has been filed</b>.</p>
+        <p><b>I first treated the two as one step, then split them</b>: HR downloads the file, and uses <i>Mark as communicated</i> once it is actually filed. Otherwise the product would show a filing as done when it is not. The cost is that the status depends on HR marking it (the product cannot check the portal).</p>
+      </div>
+      <ol class="flow viz" style="margin-block:var(--space-s) var(--space-m)" aria-label="From generating the file to filing it">
+        <li><b>Generate</b><span>Factorial builds the XML</span></li>
+        <li class="arr" aria-hidden="true">→</li>
+        <li><b>Download</b><span>HR saves the file</span></li>
+        <li class="arr" aria-hidden="true">→</li>
+        <li class="out"><b>Upload to FUNDAE</b><span>By hand, outside Factorial, maybe another day</span></li>
+        <li class="arr" aria-hidden="true">→</li>
+        <li class="key"><b>Mark as communicated</b><span>Only HR can confirm it</span></li>
+      </ol>
+    
+      <figure class="fig" aria-label="The shipped page, and three discarded layouts inside the course page">
+          <div class="plate board">
+            <div class="frame">
+              <a class="zoom" href="../../img/fundae/list-2784.png" data-zoom="../../img/fundae/list-1392.png 1x, ../../img/fundae/list-2784.png 2x" data-w="1392"><img loading="lazy" decoding="async" src="../../img/fundae/list-466.png" srcset="../../img/fundae/list-466.png 466w, ../../img/fundae/list-932.png 932w" sizes="(min-width: 90rem) 466px, (min-width: 48rem) calc(50vw - 13rem), calc(100vw - 4rem)" width="466" height="185" alt="The FUNDAE page of a course: the three steps on the left and, under Completion, one row per group with its status."></a>
+              <p class="fname"><b>Shipped:</b> its own page, organised by step, one row per group</p>
+            </div>
+            <div class="alts">
+              <div class="frame"><a class="zoom" href="../../img/fundae/tab-a-2396.png" data-zoom="../../img/fundae/tab-a-1198.png 1x, ../../img/fundae/tab-a-2396.png 2x" data-w="1198"><img loading="lazy" decoding="async" src="../../img/fundae/tab-a-466.png" srcset="../../img/fundae/tab-a-466.png 466w, ../../img/fundae/tab-a-932.png 932w" sizes="(min-width: 90rem) 466px, (min-width: 48rem) calc(50vw - 13rem), calc(100vw - 4rem)" width="466" height="185" alt="Discarded layout A: FUNDAE inside the course page, under its tabs, with horizontal steps."></a><p class="fname"><b>Discarded A:</b> horizontal steps</p></div>
+              <div class="frame"><a class="zoom" href="../../img/fundae/tab-b-2396.png" data-zoom="../../img/fundae/tab-b-1198.png 1x, ../../img/fundae/tab-b-2396.png 2x" data-w="1198"><img loading="lazy" decoding="async" src="../../img/fundae/tab-b-466.png" srcset="../../img/fundae/tab-b-466.png 466w, ../../img/fundae/tab-b-932.png 932w" sizes="(min-width: 90rem) 466px, (min-width: 48rem) calc(50vw - 13rem), calc(100vw - 4rem)" width="466" height="185" alt="Discarded layout B: FUNDAE inside the course page, under its tabs, with vertical steps."></a><p class="fname"><b>Discarded B:</b> vertical steps</p></div>
+              <div class="frame"><a class="zoom" href="../../img/fundae/tab-c-2396.png" data-zoom="../../img/fundae/tab-c-1198.png 1x, ../../img/fundae/tab-c-2396.png 2x" data-w="1198"><img loading="lazy" decoding="async" src="../../img/fundae/tab-c-466.png" srcset="../../img/fundae/tab-c-466.png 466w, ../../img/fundae/tab-c-932.png 932w" sizes="(min-width: 90rem) 466px, (min-width: 48rem) calc(50vw - 13rem), calc(100vw - 4rem)" width="466" height="185" alt="Discarded layout C: FUNDAE inside the course page, under its tabs, with a compact stepper."></a><p class="fname"><b>Discarded C:</b> compact stepper</p></div>
+            </div>
+          </div>
+          <figcaption>The shipped page, run locally with test data. The three discarded layouts sat inside the course page, under its tabs (from the prototype, in Spanish).</figcaption>
+        </figure>
+    </div>
+  </section>
+
+  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-result">
+    <h2 id="h-result" class="side display chap">Result</h2>
+    <div class="main stack" style="--s:var(--space-s)">
+      <p class="result">In its first 11 weeks after launch on 27&nbsp;August&nbsp;2026, outside the beta:</p>
+      <dl class="stats">
+        <div><dt>filings marked as communicated</dt><dd>158</dd></div>
+        <div><dt>companies filing through it</dt><dd>22</dd></div>
+      </dl>
+      <p class="ctext">It replaced the old export, which only produced the group-end filing; <b>the team removed that export in October</b>. After I moved to another team, the training team kept this structure and has since added a salary-cost calculator and fixes on top of it.</p>
+    </div>
+  </section>
+
+  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-costs">
+    <h2 id="h-costs" class="side display chap">Costs by company, without a switch</h2>
+    <div class="main stack" style="--s:var(--space-s)">
+        <p class="ctext">The AI proposed a switch to turn the split by company on (as in Factorial’s training budgets screen). <b>In FUNDAE the split is not optional</b>: in a corporate group, each company can recover up to its own maximum, based on its own participants.</p>
+        <p class="ctext"><b>So there is no switch</b>: when a course is filed as a group of companies, the product asks for the split and lays the costs out by each participant’s company.</p>
+        <figure class="fig"><div class="plate"><a class="zoom" href="../../img/fundae/costs-1968.png" data-zoom="../../img/fundae/costs-984.png 1x, ../../img/fundae/costs-1968.png 2x" data-w="984"><img loading="lazy" decoding="async" src="../../img/fundae/costs-952.png" srcset="../../img/fundae/costs-952.png 952w, ../../img/fundae/costs-1904.png 1904w" sizes="(min-width: 90rem) 952px, (min-width: 48rem) calc(100vw - 25rem), calc(100vw - 4rem)" width="952" height="315" alt="A group’s costs after the split: the rule that each company recovers up to its own maximum, the total cost, and the direct, indirect and salary costs of one company with its participants."></a></div><figcaption>The same group once its costs are split: each company gets its own costs, and the product states the rule for what each one can recover (run locally with test data).</figcaption></figure>
+      </div>
+  </section>
+  <section class="csec center sidebar" style="--side:16rem;--min:55%;--g:var(--space-s) var(--space-l)" aria-labelledby="h-ai">
+    <h2 id="h-ai" class="side display chap">Working with AI</h2>
+    <div class="main stack" style="--s:0">
+      <article class="dec stack" style="--s:var(--space-s)">
+        <h3>From the brief to the launch, with the agents in between</h3>
+        <ol class="flow viz" style="margin-block:var(--space-s) var(--space-m)" aria-label="The work, step by step">
+          <li><b>Brief</b><span>Claude Code, with the spec, the tickets and the PRs through MCP; FUNDAE’s own schemas as the source of truth</span></li>
+          <li class="arr" aria-hidden="true">→</li>
+          <li><b>Real code</b><span>The flow in production components, in the team’s prototyping environment; three layouts tried</span></li>
+          <li class="arr" aria-hidden="true">→</li>
+          <li class="key"><b>Agents</b><span>A QA agent before launch: 175 cases, 13 bugs, two blocking</span></li>
+          <li class="arr" aria-hidden="true">→</li>
+          <li class="key"><b>Gates</b><span>Every XML validated against the official schemas; a bug is data lost, a wrong file or a false statement</span></li>
+          <li class="arr" aria-hidden="true">→</li>
+          <li><b>Team</b><span>Tickets in engineering’s format; live on 27 August; 158 filings from 22 companies</span></li>
+        </ol>
+        <p class="ctext">The brief was in Claude Code: the specification and the tickets, read through MCP, the pull requests as they landed, and <b>FUNDAE’s official schemas, downloaded as the source of truth</b> for what each of the three filings must contain. The flow was built in real code on the production design system, in the team’s prototyping environment, where I tried the three layouts as a tab before giving FUNDAE its own page.</p>
+        <p class="ctext">Before launch I ran the QA with <b>an agent I had built in June</b> and had already used on other projects. It gathers the context on its own (specification, tickets, pull requests), writes the test plan, tests in the browser and files the confirmed bugs as tickets. </p>
+        <p class="ctext">On FUNDAE it worked in the live product with a test company, <b>validated every file it generated against FUNDAE’s official schemas</b>, traced bugs to the code where the code was available, and filed them in the format engineering asked for.</p>
+        <p class="ctext">The agent first read <i>Mark as communicated</i> as a claim made by the product and flagged as critical things that were not. <b>I corrected it: that status is HR’s own record.</b> From then on, a bug was the product losing data, writing wrong data into a file or saying something false; everything else went to a separate list of design issues.</p>
+        <p class="ctext">It found <b>13 bugs, two of them blocking</b>: a group-start file FUNDAE would have rejected, and a group-end file that could not be generated at all. Both were in the group-of-companies filing profile, which earlier testing had not covered, and both were fixed before launch.</p>
+<figure class="fig" aria-label="QA with an agent: the test plan, the schema check and the ticket">
+          <div class="plate docs">
+            <div class="doc paper plan">
+              <p class="pk">Test plan · 175 cases</p>
+              <ol class="plan-sec">
+                <li>Coverage model</li>
+                <li>Oracles: what decides each check</li>
+                <li>State machine: communicated and reverted</li>
+                <li>Decision table: completion criteria</li>
+                <li>Field classes and limits</li>
+                <li>Export matrix: every file for every profile</li>
+                <li>Edge cases</li>
+                <li>Bug hypotheses</li>
+                <li>Attacks on what isn’t restricted</li>
+                <li>Consistency checks</li>
+                <li>Permissions</li>
+                <li>Regression of the 10 pull requests in flight</li>
+                <li>Final pass with six companies</li>
+              </ol>
+              <ul class="checks">
+                <li><i aria-label="passed">✓</i><span>E6 Revert communication works</span></li>
+                <li><i aria-label="passed">✓</i><span>E7 The counters add up across the whole flow</span></li>
+                <li><i aria-label="blocked">~</i><span>F2 One cost block per company: blocked, no end file to check yet</span></li>
+                <li><i aria-label="open">○</i><span>B7 The XML does not validate: the main hypothesis</span></li>
+              </ul>
+            </div>
+            <div class="doc termwin term">
+              <p class="pk">Schema check</p>
+<pre><code>$ xmllint --noout --schema AAFF_Inicio.xsd AccionFormativa_00144.xml
+AccionFormativa_00144.xml validates
+
+$ xmllint --noout --schema InicioGrupos_GrupoEmpresa.xsd GrupoFormativo_00001.xml
+element 'grupo': Missing child element(s). Expected is one of ( distanciaTeleformacion, aulaVirtual, EmpresasParticipantes )
+<b>GrupoFormativo_00001.xml fails to validate</b></code></pre>
+            </div>
+            <div class="doc paper ticket">
+              <p class="pk">Ticket · Sub-task · Done</p>
+              <p class="tt">The group-start XML is generated without the required EmpresasParticipantes block, so FUNDAE rejects it</p>
+              <dl>
+                <dt>Environment</dt><dd>Test company; a course with the Grupo de Empresa profile; a group start.</dd>
+                <dt>Steps</dt><dd>1. Fill in the whole group-start form and save. 2. Download: GrupoFormativo_00001.xml.</dd>
+                <dt>Result</dt><dd>The file closes &lt;grupo&gt; without &lt;EmpresasParticipantes&gt;, the list of the group’s companies with their CIF, and does not validate against FUNDAE’s official schema.</dd>
+                <dt>Expected</dt><dd>The file includes the block, validates and FUNDAE accepts it.</dd>
+              </dl>
+            </div>
+          </div>
+          <figcaption>Recreated from the agent’s QA log and the ticket it filed (translated from Spanish, without names or ticket keys).</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="csec center stack" style="--s:var(--space-s)" aria-label="Next project">
+    <a class="next stack" data-nav href="../../work/workforce-culture/" style="--s:var(--space-2xs)">
+      <span class="label">Next project</span>
+      <span class="display nt"><span class="gl gx" data-text="Workforce Culture">Workforce Culture</span></span>
+      <span class="go">View project <i aria-hidden="true">→</i></span>
+    </a>
+    <a class="label back" href="../../#work" data-nav><i aria-hidden="true">←</i> All work</a>
+  </section>
+</main>
+
+<footer class="contact center stack" id="contact" style="--s:var(--space-m)">
+  <p class="label strong">Contact</p>
+  <div class="cluster" style="--c:var(--space-xs) var(--space-xl)">
+    <a class="big display t6" href="https://www.linkedin.com/in/jon-ander-saenz/" target="_blank" rel="noopener"><span class="gl gx" data-text="LinkedIn">LinkedIn</span> <span>↗</span></a>
+    <a class="big display t6" href="mailto:jasve90@gmail.com"><span class="gl gx" data-text="Email">Email</span> <span>↗</span></a>
+    <a class="big display t6" href="../../Jon-Ander-Saenz-Vega-CV.pdf" target="_blank" rel="noopener"><span class="gl gx" data-text="CV">CV</span> <span>↗</span></a>
+  </div>
+  <div class="foot label"><span>© 2026 Jon Ander</span><span>English · <a href="../../es/work/subsidy-filings/" lang="es" hreflang="es">Español</a></span></div>
+</footer>
+</div>
+<script src="../../js/site.js?v=20261117"></script>
+</body>
+</html>
