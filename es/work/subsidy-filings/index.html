@@ -24,7 +24,7 @@
 <script>try{if(sessionStorage.getItem('arriveB')==='1')document.documentElement.dataset.arrived='blocks'}catch(e){}</script>
 <link rel="preload" href="../../../fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../../fonts/martian-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../../css/site.css?v=202611191033">
+<link rel="stylesheet" href="../../../css/site.css?v=202611191147">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Bonificaciones FUNDAE", "description": "Caso: las comunicaciones a FUNDAE dentro de Factorial, el software de RR. HH. De los trámites preparados a mano a un flujo en el producto: 158 comunicaciones de 22 empresas en las primeras 11 semanas, sin contar la beta.", "inLanguage": "es", "url": "https://jonanderdesign.github.io/es/work/subsidy-filings/", "mainEntityOfPage": "https://jonanderdesign.github.io/es/work/subsidy-filings/", "image": "https://jonanderdesign.github.io/img/fundae/hero-1246.webp", "author": {"@type": "Person", "name": "Jon Ander", "jobTitle": "Product designer", "url": "https://jonanderdesign.github.io/", "sameAs": ["https://www.linkedin.com/in/jon-ander-saenz/"], "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "worksFor": {"@type": "Organization", "name": "Factorial"}, "knowsAbout": ["Product design", "B2B software", "HR software", "AI products", "Agentic workflows", "Prototyping in code", "Design systems"]}, "publisher": {"@type": "Person", "name": "Jon Ander", "jobTitle": "Product designer", "url": "https://jonanderdesign.github.io/", "sameAs": ["https://www.linkedin.com/in/jon-ander-saenz/"], "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "worksFor": {"@type": "Organization", "name": "Factorial"}, "knowsAbout": ["Product design", "B2B software", "HR software", "AI products", "Agentic workflows", "Prototyping in code", "Design systems"]}}</script>
 </head>
 <body>
@@ -71,6 +71,7 @@
     <div class="main stack" style="--s:var(--space-s)">
       <div class="ctext">
       <p>Las empresas en España pueden recuperar parte de lo que invierten en formación a través de FUNDAE, la fundación pública que gestiona estas bonificaciones. Para conseguirlo tienen que comunicar tres cosas por cada curso: el propio curso, el inicio de cada grupo y el fin de cada grupo. Cada comunicación es un archivo XML que FUNDAE valida contra sus propios esquemas, y las tres se reparten a lo largo de meses.</p>
+      <p>212 empresas tenían FUNDAE configurado en Factorial y no habían exportado ni una sola comunicación. Cerrar ese hueco era el objetivo del proyecto.</p>
       <p class="ctext"><b>Trámites fuera del producto.</b> Factorial ya guardaba todos los datos que piden esos archivos. Sin embargo, la exportación que existía solo generaba la última de las tres, así que los equipos de RR.&nbsp;HH. preparaban las otras dos a mano, fuera del producto, con el riesgo de que FUNDAE las rechazara.</p>
       <p class="ctext"><b>Sin visibilidad del proceso.</b> Como el inicio y el fin se comunican de nuevo por cada grupo, un solo curso puede suponer muchas comunicaciones a lo largo del tiempo. Nada en el producto mostraba cuáles estaban hechas y cuáles seguían pendientes.</p>
     </div>
@@ -236,6 +237,6 @@ element 'grupo': Missing child element(s). Expected is one of ( distanciaTelefor
   <div class="foot label"><span>© 2026 Jon Ander · Product designer</span></div>
 </footer>
 </div>
-<script src="../../../js/site.js?v=202611191033"></script>
+<script src="../../../js/site.js?v=202611191147"></script>
 </body>
 </html>
